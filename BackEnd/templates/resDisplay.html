@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!-- 这是显示识别结果的页面 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>formula2X</title>
+    <!-- style用于存放整个页面的CSS文件。由于在编码时，跨文件调用出现未知故障，故出此下策 -->
+    <style>
+        .returnToMain
+        {
+            background: #0071e3;
+            color: #fff;
+            border-color: rgba(0,0,0,0);
+            font-size: 17px;
+            line-height: 1.17648;
+            font-weight: 400;
+            letter-spacing: -.022em;
+            border-style: solid;
+            border-width: 1px;
+            min-width: 28px;
+            padding-left: 21px;
+            padding-right: 21px;
+            padding-top: 11px;
+            padding-bottom: 11px;
+            --sk-button-margin-horizontal: 18px;
+            --sk-button-margin-vertical: 18px;
+            border-radius: 25px; 
+            text-align: center;
+        }
+        .containerOfButton
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+            width: 200px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+        }
+        footer {
+            display: flex;
+            margin-top: 30%;
+            margin-bottom: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color:  #fff;
+          }
+          footer p {
+            color: rgba(0, 0, 0, 0);
+            margin-top: 0;
+            margin-bottom: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+            font-weight: normal;           
+            line-height: 30px;
+          }
+          footer a {
+            color:  #0071e3;
+            text-decoration: none;
+          }
+          footer a:hover {
+            text-decoration: underline;
+          }
+    </style>
+    <!-- 以下内容用于渲染公式 -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+      </script>
+      <script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</head>
+<body>
+    <h1 align="center">formula2x</h1>
+    <h1>您的公式识别结果是：</h1>
+    <p>${{res}}$ </p>
+    <h1>该公式的latex代码如下:</h1>
+    <pre><code class="language-latex">{{res}} </code></pre>
+    <h1>该公式的markdown代码如下:</h1>
+    <pre><code class="language-markdown">${{res}}$</code></pre>
+    <!-- <h1>该公式的mathML代码如下:</h1>
+    <p><code>{{resInMathMl}} </code></p> -->
+    <!-- 参见views.py封装的数据(context的赋值),由于那里将识别结果封装在了res条目里，故如此设计-->
+</body>
+<div class="containerOfButton">
+    <button class="returnToMain" onclick=backToMain() > 返回主页</button>
+</div>
+<footer id="页尾">
+  <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
+  <p style="color:rgb(0,0,0)">
+    本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
+    >,
+    <a href="https://github.com/wonder324" target="_blank">@wonder324</a
+    >制作
+  </p>
+  <p style="color:rgb(0,0,0)">
+    在GitHub上<a
+      href="https://github.com/gxy2314/formula2X"
+      target="_blank"
+      title="访问我们的GitHub项目地址"
+      >联系我们</a
+    >,查看网站的项目文件
+  </p>
+  <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
+  <p id="contactEmail" style="color:rgb(0,0,0)">
+    co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
+  </p>
+</footer>
+<script type="text/javascript">
+    function backToMain()
+    {
+       window.location.href = '/main.html';
+    }
+    (function () {
+  "use strict";
+
+  // 检查是否已经加载自定义样式
+  if (!document.getElementById("custom-copy-styles")) {
+    const css = `
+      /* 基础代码块样式 */
+      pre {
+        position: relative;
+        background: #2d2d2d;
+        border-radius: 8px;
+        overflow: auto;
+        padding: 1rem;
+        margin: 1rem 0;
+        font-family: "Fira Code", monospace;
+        color: #f8f8f2;
+      }
+      pre code {
+        display: block;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+      /* 复制按钮样式 */
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        font-size: 12px;
+        padding: 4px 8px;
+        color: #fff;
+        background-color: #0071e3;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 2;
+        transition: background-color 0.2s;
+        display: none; /* 默认隐藏 */
+      }
+      .copy-btn:hover {
+        background-color: #005bb5;
+      }
+      pre:hover .copy-btn {
+        display: block; /* 悬停时显示按钮 */
+      }
+    `;
+    const style = document.createElement("style");
+    style.id = "custom-copy-styles";
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  // 遍历所有代码块
+  const codeBlocks = document.querySelectorAll("pre code");
+  codeBlocks.forEach((codeBlock) => {
+    const pre = codeBlock.parentElement;
+
+    // 添加 Prism.js 高亮
+    if (typeof Prism !== "undefined") {
+      Prism.highlightElement(codeBlock);
+    }
+
+    // 创建复制按钮
+    const copyButton = document.createElement("button");
+    copyButton.className = "copy-btn";
+    copyButton.textContent = "复制";
+    pre.appendChild(copyButton);
+
+    // 复制功能逻辑
+    copyButton.addEventListener("click", function () {
+      const code = codeBlock.textContent; // 获取代码内容
+
+      // 使用 Clipboard API 实现复制
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).then(() => {
+          copyButton.textContent = "复制成功";
+          resetButton(copyButton);
+        }).catch(() => {
+          copyButton.textContent = "复制失败";
+          resetButton(copyButton);
+        });
+      } else {
+        // 备用方法：通过 textarea
+        const textarea = document.createElement("textarea");
+        textarea.value = code;
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand("copy");
+          copyButton.textContent = "复制成功";
+        } catch {
+          copyButton.textContent = "复制失败";
+        }
+        document.body.removeChild(textarea);
+        resetButton(copyButton);
+      }
+    });
+
+    // 重置按钮文本
+    function resetButton(button) {
+      setTimeout(() => {
+        button.textContent = "复制";
+      }, 2000);
+    }
+  });
+})();
+
+</script>
+</html>

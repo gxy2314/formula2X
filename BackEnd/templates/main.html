@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- 这是主页面，也是上传文件的页面 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .title
+        {
+            padding-top: 9%;
+        }
+        .button{
+            background: #0071e3;
+            color: #fff;
+            border-color: rgba(0,0,0,0);
+                    font-size: 17px;
+                    line-height: 1.17648;
+                    font-weight: 400;
+                    letter-spacing: -.022em;
+                    border-style: solid;
+                    border-width: 1px;
+                    min-width: 28px;
+                    padding-left: 21px;
+                    padding-right: 21px;
+                    padding-top: 11px;
+                    padding-bottom: 11px;
+                    --sk-button-margin-horizontal: 18px;
+                    --sk-button-margin-vertical: 18px;
+                    border-radius: 25px; 
+                    text-align: center;
+        }
+        .containerOfButton
+        {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-25%, -25%);
+            width: 200px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+        }
+        .inputarea
+        {   
+            position: absolute;
+            left: 30%;
+            right:30%;
+            margin-top: 10%;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 25px; /* 圆角 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 细微阴影 */
+
+        }
+        .inputarea input[type="file"] {
+           display: none;
+         }
+         footer {
+            display: flex;
+            margin-top: 32%;
+            margin-bottom: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color:  #fff;
+          }
+          footer p {
+            color: rgba(0, 0, 0, 0);
+            margin-top: 0;
+            margin-bottom: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+            font-weight: normal;           
+            line-height: 30px;
+          }
+          footer a {
+            color:  #0071e3;
+            text-decoration: none;
+          }
+          footer a:hover {
+            text-decoration: underline;
+}
+    </style>
+    <div  class="title">
+        <title>formula2X</title>
+    </div>
+</head>
+<body>
+    <h1 align="center" >formula2X</h1>
+        <form enctype="multipart/form-data" action="/uploadedFile/" method="post" style="width: 200px;" > 
+            <!-- action的赋值需同函数的路由保持一致 -->
+              {% csrf_token %}
+            <div class="inputarea">
+                <label for="upLoadFile">
+                <span>点击浏览本地文件</span>
+                <input type="file" id="upLoadFile" name="uploadedFile"  oninput="formatCheck()" accept="image/*" 
+                required="true"  hidden/>
+            </label>
+            </div>
+            <!-- name的取值需和views.py中的 fileGet=request.FILES.get("uploadedFile",None)第一个参数保持一致 -->
+            <br/>
+            <div class="containerOfButton">
+               <input type="submit" value="上传" class="button"/>
+            </div>
+        </form>
+
+</body>
+<footer id="页尾">
+  <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
+  <p style="color:rgb(0,0,0)">
+    本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
+    >,
+    <a href="https://github.com/wonder324" target="_blank">@wonder324</a
+    >制作
+  </p>
+  <p style="color:rgb(0,0,0)">
+    在GitHub上<a
+      href="https://github.com/gxy2314/formula2X"
+      target="_blank"
+      title="访问我们的GitHub项目地址"
+      >联系我们</a
+    >,查看网站的项目文件
+  </p>
+  <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
+  <p id="contactEmail" style="color:rgb(0,0,0)">
+    co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
+  </p>
+</footer>
+<script type="text/javascript">
+    function formatCheck() {
+    var fileInput = document.getElementById("upLoadFile");
+    var file = document.getElementById("upLoadFile").files[0];
+    //获取用户上传的最新文件
+    var name = file.name;
+    //以点为界分割文件名，取出最后一项，是为后缀
+    var ext = name.split(".").pop().toLowerCase();
+    const allowedExt = ["png", "jpg", "jpeg"];
+     //允许的格式为png，jpg，jpeg
+    // if (allowedExt.indexOf(ext) == -1) {
+    //     alert("文件格式不符合要求,请重新上传文件");
+    //     this.value = "";
+    //     }
+    if (!allowedExt.includes(ext)) {
+        alert("无效的文件格式，请上传 JPG/PNG/JPEG 格式的文件！");
+        fileInput.value= ""; // 清空输入框
+        return false; 
+      }
+      return true;
+  }
+  const inputArea = document.querySelector('.inputarea');
+  const fileNameSpan = document.querySelector('.inputarea span');
+const fileInput = document.querySelector('.inputarea input[type="file"]');
+
+inputArea.addEventListener('click', () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    fileNameSpan.textContent = file.name;
+  } else {
+    fileNameSpan.textContent = '点击浏览本地文件';
+  }
+});
+</script>
+</html>
