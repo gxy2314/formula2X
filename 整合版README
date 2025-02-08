@@ -3,20 +3,20 @@ formula2X 公式识别系统
 随着学术论文的数字化和在线共享的增加，数学公式作为学术内容的重要组成部分，其规范化复制和引用成为了一个重要问题。传统的图片、PDF等格式公式难以直接编辑和引用，这大大增加了研究工作的难度。基于对这一点的体会，我们设计了formula2X公式识别系统，旨在提供一个从数学公式图片到可编辑文本格式的自动化转换工具。项目采用Django框架，基于深度学习模型，实现了Web端的公式识别。用户可将包含公式的图片上传至Web端，formula2X可实现图片中公式的识别，并将识别结果分别以Markdown、LaTeX等格式可复制呈现。
 ________________________________________
 2. 项目结构
-•	test.py：测试模型的最小程序
-•	testforweb.py：查看Django安装情况的测试脚本
-•	backend文件夹：项目主体
-o	backend子文件夹：核心配置文件
-	urls.py：根路由配置
-	settings.py：项目设置（模板路径、语言、时区、内网访问权限等）
-	views.py：核心业务逻辑函数
-o	processSection文件夹：初始版本核心功能模块
-	依赖根路由配置：path('processSection/', include('processSection.urls'))
-•	template文件夹：前端代码
-o	main.html：首页及文件上传接口
-o	resDisplay.html：识别结果展示页
-•	uploadedFile文件夹：用户上传图片存储目录
-•	db.sqlite3：项目自带数据库
+test.py：测试模型的最小程序
+testforweb.py：查看Django安装情况的测试脚本
+backend文件夹：项目主体
+backend子文件夹：核心配置文件
+urls.py：根路由配置
+settings.py：项目设置（模板路径、语言、时区、内网访问权限等）
+views.py：核心业务逻辑函数
+processSection文件夹：初始版本核心功能模块
+依赖根路由配置：path('processSection/', include('processSection.urls'))
+template文件夹：前端代码
+main.html：首页及文件上传接口
+resDisplay.html：识别结果展示页
+uploadedFile文件夹：用户上传图片存储目录
+db.sqlite3：项目自带数据库
 ________________________________________
 3. 如何使用这一项目
 以下操作推荐在项目工作空间中进行：
