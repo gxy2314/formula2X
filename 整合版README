@@ -71,10 +71,40 @@ python -m pix2tex.dataset.dataset \
 2.	建议使用GPU环境（显存消耗较大）
 3.	参考官方Colab Notebook进行云端训练
 ________________________________________
-5. 版本说明
-V 0.0.1 Beta | 2025年1月27日
-•	完成开源全部流程
+5. 训练结束后模型文件的保存与替换
+模型文件的保存
+在模型训练完成后，模型文件将以 .pth 格式保存，文件命名格式如下：
+{name}_e{epoch}_step{step}.pth
+其中：
+{name} 为模型的名称，来自于 config.yaml 配置中的 args.name
+{epoch} 为当前训练的轮次（e+1）
+{step} 为当前训练步骤编号（i）
+模型默认保存在：
+out_path = os.path.join(args.model_path, args.name)
+此外，训练时的 配置文件 也会自动保存：
+config.yaml
+该文件包含所有训练参数，便于后续加载或复现训练过程。
+如何替换预训练模型
+训练完成后，您需要 手动替换 formula2X 识别系统中的模型文件：
+找到最新的模型文件
+ls <模型保存目录>
+例如：
+formula2X_e10_step500.pth
+将训练好的模型文件复制到 Web 端目录
+cp <新模型路径> <Web 端模型存储路径>
+例如：
+cp formula2X_e10_step500.pth backend/model.pth
+修改 Web 端代码以加载新模型
+在 settings.py 或 views.py 中修改模型加载路径：
+MODEL_PATH = "backend/model.pth"
+重启 Web 服务
+cd Backend
+python manage.py runserver 0.0.0.0:8000
 ________________________________________
-6. 版权说明
-1.	本项目知识产权系全体开发者共有，未经许可不得用于商业用途。
-2.	Copyright@2025 All Rights Reserved.
+6. 版本说明
+V 0.0.1 Beta | 2025年1月27日
+完成开源全部流程
+________________________________________
+7. 版权说明
+本项目知识产权系全体开发者共有，未经许可不得用于商业用途。
+Copyright @ 2025 All Rights Reserved.
