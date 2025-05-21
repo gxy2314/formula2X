@@ -8,7 +8,9 @@
     <style>
         .title
         {
-            padding-top: 9%;
+            margin-top: 9%;
+            text-align: center;
+            
         }
         .button{
             background: #0071e3;
@@ -33,7 +35,7 @@
         .containerOfButton
         {
             position: absolute;
-            top: 60%;
+            margin-top: 20%;
             left: 50%;
             transform: translate(-25%, -25%);
             width: 200px; /* Adjust as needed */
@@ -42,8 +44,9 @@
         .inputarea
         {   
             position: absolute;
-            left: 30%;
-            right:30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width:50%;
             margin-top: 10%;
             background-color: #fff;
             padding: 10px;
@@ -56,8 +59,12 @@
          }
          footer {
             display: flex;
-            margin-top: 32%;
-            margin-bottom: 0;
+            position: fixed;
+            bottom: 2%;
+            left: 0;
+            width: 100%;
+           /*  margin-top: 32%;
+            margin-bottom: 0; */
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -80,12 +87,10 @@
             text-decoration: underline;
 }
     </style>
-    <div  class="title">
-        <title>formula2X</title>
-    </div>
+
 </head>
 <body>
-    <h1 align="center" >formula2X</h1>
+    <h1 class="title" align="center" >Formula2X</h1>
         <form enctype="multipart/form-data" action="/uploadedFile/" method="post" style="width: 200px;" > 
             <!-- action的赋值需同函数的路由保持一致 -->
               {% csrf_token %}
@@ -102,29 +107,29 @@
                <input type="submit" value="上传" class="button"/>
             </div>
         </form>
-
+    <footer id="页尾">
+          <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
+          <p style="color:rgb(0,0,0)">
+            本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
+            >,
+            <a href="https://github.com/wonder324" target="_blank">@wonder324</a
+            >制作
+          </p>
+          <p style="color:rgb(0,0,0)">
+            在GitHub上<a
+              href="https://github.com/gxy2314/formula2X"
+              target="_blank"
+              title="访问我们的GitHub项目地址"
+              >联系我们</a
+            >,查看网站的项目文件
+          </p>
+          <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
+          <p id="contactEmail" style="color:rgb(0,0,0)">
+            co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
+          </p>
+        </footer>
 </body>
-<footer id="页尾">
-  <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
-  <p style="color:rgb(0,0,0)">
-    本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
-    >,
-    <a href="https://github.com/wonder324" target="_blank">@wonder324</a
-    >制作
-  </p>
-  <p style="color:rgb(0,0,0)">
-    在GitHub上<a
-      href="https://github.com/gxy2314/formula2X"
-      target="_blank"
-      title="访问我们的GitHub项目地址"
-      >联系我们</a
-    >,查看网站的项目文件
-  </p>
-  <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
-  <p id="contactEmail" style="color:rgb(0,0,0)">
-    co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
-  </p>
-</footer>
+
 <script type="text/javascript">
     function formatCheck() {
     var fileInput = document.getElementById("upLoadFile");
