@@ -1,0 +1,55 @@
+.returnToMain
+{
+    background: #0071e3;
+    color: #fff;
+    border-color: rgba(0,0,0,0);
+    font-size: 17px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    border-style: solid;
+    border-width: 1px;
+    min-width: 28px;
+    padding-left: 21px;
+    padding-right: 21px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    --sk-button-margin-horizontal: 18px;
+    --sk-button-margin-vertical: 18px;
+    border-radius: 25px; 
+    text-align: center;
+}
+.containerOfButton
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -25%);
+    width: 200px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+}
+footer {
+    display: flex;
+    margin-top: 30%;
+    margin-bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:  #fff;
+  }
+  footer p {
+    color: rgba(0, 0, 0, 0);
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: normal;           
+    line-height: 30px;
+  }
+  footer a {
+    color:  #0071e3;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }

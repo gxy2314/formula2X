@@ -5,81 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .title
-        {
-            padding-top: 9%;
-        }
-        .button{
-            background: #0071e3;
-            color: #fff;
-            border-color: rgba(0,0,0,0);
-                    font-size: 17px;
-                    line-height: 1.17648;
-                    font-weight: 400;
-                    letter-spacing: -.022em;
-                    border-style: solid;
-                    border-width: 1px;
-                    min-width: 28px;
-                    padding-left: 21px;
-                    padding-right: 21px;
-                    padding-top: 11px;
-                    padding-bottom: 11px;
-                    --sk-button-margin-horizontal: 18px;
-                    --sk-button-margin-vertical: 18px;
-                    border-radius: 25px; 
-                    text-align: center;
-        }
-        .containerOfButton
-        {
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-25%, -25%);
-            width: 200px; /* Adjust as needed */
-            height: 50px; /* Adjust as needed */
-        }
-        .inputarea
-        {   
-            position: absolute;
-            left: 30%;
-            right:30%;
-            margin-top: 10%;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 25px; /* 圆角 */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 细微阴影 */
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- <style>
 
-        }
-        .inputarea input[type="file"] {
-           display: none;
-         }
-         footer {
-            display: flex;
-            margin-top: 32%;
-            margin-bottom: 0;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color:  #fff;
-          }
-          footer p {
-            color: rgba(0, 0, 0, 0);
-            margin-top: 0;
-            margin-bottom: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: small;
-            font-weight: normal;           
-            line-height: 30px;
-          }
-          footer a {
-            color:  #0071e3;
-            text-decoration: none;
-          }
-          footer a:hover {
-            text-decoration: underline;
-}
-    </style>
+    </style> -->
     <div  class="title">
         <title>formula2X</title>
     </div>
