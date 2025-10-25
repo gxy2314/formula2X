@@ -26,7 +26,9 @@
 
 </head>
 <body>
+
     <h1 align="center">formula2x</h1>
+  <div class="lr">
     <h1>您的公式识别结果是：</h1>
     <p>${{res}}$ </p>
     <h1>该公式的latex代码如下:</h1>
@@ -36,31 +38,32 @@
     <!-- <h1>该公式的mathML代码如下:</h1>
     <p><code>{{resInMathMl}} </code></p> -->
     <!-- 参见views.py封装的数据(context的赋值),由于那里将识别结果封装在了res条目里，故如此设计-->
-</body>
-<div class="containerOfButton">
-    <button class="returnToMain" onclick=backToMain() > 返回主页</button>
+    <div class="containerOfButton">
+      <button class="returnToMain" onclick=backToMain() > 返回主页</button>
+  </div>
 </div>
-<footer id="页尾">
-  <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
-  <p style="color:rgb(0,0,0)">
-    本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
-    >,
-    <a href="https://github.com/wonder324" target="_blank">@wonder324</a
-    >制作
-  </p>
-  <p style="color:rgb(0,0,0)">
-    在GitHub上<a
-      href="https://github.com/gxy2314/formula2X"
-      target="_blank"
-      title="访问我们的GitHub项目地址"
-      >联系我们</a
-    >,查看网站的项目文件
-  </p>
-  <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
-  <p id="contactEmail" style="color:rgb(0,0,0)">
-    co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
-  </p>
-</footer>
+  <footer id="页尾">
+    <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
+    <p style="color:rgb(0,0,0)">
+      本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
+      >,
+      <a href="https://github.com/wonder324" target="_blank">@wonder324</a
+      >制作
+    </p>
+    <p style="color:rgb(0,0,0)">
+      在GitHub上<a
+        href="https://github.com/gxy2314/formula2X"
+        target="_blank"
+        title="访问我们的GitHub项目地址"
+        >联系我们</a
+      >,查看网站的项目文件
+    </p>
+    <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
+    <p id="contactEmail" style="color:rgb(0,0,0)">
+      co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
+    </p>
+  </footer>
+  </body>
 <script type="text/javascript">
     function backToMain()
     {

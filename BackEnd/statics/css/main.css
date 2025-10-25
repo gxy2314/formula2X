@@ -1,6 +1,40 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
 .title
 {
-    padding-top: 9%;
+    padding-top: 2%;
+}
+h1 {
+  margin: 20px 0 10px 0;  /* 减小标题下方的间距 */
+  padding: 0;
+}
+.lr
+{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1; /* 占据剩余空间 */
+  box-sizing: border-box;
+  margin: 0 auto; /* 居中 */
+  padding: 20px;
+  /* height: 75vh; */
+}
+.lr form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
 }
 .button{
     background: #0071e3;
@@ -24,32 +58,57 @@
 }
 .containerOfButton
 {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-25%, -25%);
+    /* position: absolute; */
+    margin-top: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    /* left: 50%; */
+    /* transform: translate(-25%, -25%);
     width: 200px; /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
+    /* height: 50px; Adjust as needed  */
 }
 .inputarea
 {   
-    position: absolute;
-    left: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 10%; */
+    min-height: 300px;
+    /* height: 100%; */
+    width: 100%;
+    cursor: pointer;
+    /* position: absolute; */
+    /* left: 30%;
     right:30%;
-    margin-top: 10%;
-    background-color: #fff;
-    padding: 10px;
+    margin-top: 10%; */
+    /* background:red; */
+    padding: 60px 40px;
     border-radius: 25px; /* 圆角 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 细微阴影 */
+    transition: all 0.3s ease;
 
+}
+.inputarea label {
+  width: 100%;
+  cursor: pointer;
+}
+.inputarea label span {
+  display: block;
+  text-align: center;
 }
 .inputarea input[type="file"] {
    display: none;
  }
+ .inputarea:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background: #f5f5f5;
+}
  footer {
     display: flex;
-    margin-top: 32%;
-    margin-bottom: 0;
+    /* margin-top: 32%; */
+    margin-bottom: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -67,7 +126,38 @@
   footer a {
     color:  #0071e3;
     text-decoration: none;
+    transition: color 0.2s ease;
   }
   footer a:hover {
     text-decoration: underline;
+}
+#previewImage {
+  max-width: 100%;    
+  max-height: 100%;  
+  margin-top: 10px;   
+  display: none;      
+}
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+.tooltip::after {
+  content: "co.sys@outlook.com";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+.tooltip:hover::after {
+  opacity: 1;
 }

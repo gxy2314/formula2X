@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% load tz %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}?v={{ now|date:'YmdHis' }}">
     <!-- <style>
 
     </style> -->
@@ -16,8 +17,10 @@
 </head>
 <body>
     <h1 align="center" >formula2X</h1>
-        <form enctype="multipart/form-data" action="/uploadedFile/" method="post" style="width: 200px;" > 
-            <!-- action的赋值需同函数的路由保持一致 -->
+    <div class="lr">
+        <form enctype="multipart/form-data" action="/uploadedFile/" method="post" > 
+            <!-- 以 multipart/form-data 方式通过 HTTP POST 请求，把文件传给服务器的/uploadedFile/路径 
+             action的赋值需同函数的路由保持一致 -->
               {% csrf_token %}
             <div class="inputarea">
                 <label for="upLoadFile">
@@ -25,36 +28,40 @@
                 <input type="file" id="upLoadFile" name="uploadedFile"  oninput="formatCheck()" accept="image/*" 
                 required="true"  hidden/>
             </label>
-            </div>
+            <img id="previewImage" src="" style="display: none;">
             <!-- name的取值需和views.py中的 fileGet=request.FILES.get("uploadedFile",None)第一个参数保持一致 -->
-            <br/>
+            </div>
+<!-- 
+            <br/> -->
             <div class="containerOfButton">
                <input type="submit" value="上传" class="button"/>
             </div>
         </form>
-
+    </div>
+    <footer id="页尾">
+      <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
+      <p style="color:rgb(0,0,0)">
+        本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
+        >,
+        <a href="https://github.com/wonder324" target="_blank">@wonder324</a
+        >制作
+      </p>
+      <p style="color:rgb(0,0,0)">
+        在GitHub上<a
+          href="https://github.com/gxy2314/formula2X"
+          target="_blank"
+          title="访问我们的GitHub项目地址"
+          >联系我们</a
+        >,查看网站的项目文件
+      </p>
+      <!-- <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
+      <p id="contactEmail" style="color:rgb(0,0,0)">
+        co.sys@outlook.com
+      </p> -->
+      <p style="color:rgb(0,0,0)">通过<span class="tooltip" style="color:#000">电子邮件</span>向我们反馈您遇到的问题和建议。</p>
+    </footer>
 </body>
-<footer id="页尾">
-  <p style="color:rgb(0,0,0);">Copyright@2025 All Rights Reserved.</p>
-  <p style="color:rgb(0,0,0)">
-    本网站由<a href="https://github.com/gxy2314" target="_blank">@gxy2314</a
-    >,
-    <a href="https://github.com/wonder324" target="_blank">@wonder324</a
-    >制作
-  </p>
-  <p style="color:rgb(0,0,0)">
-    在GitHub上<a
-      href="https://github.com/gxy2314/formula2X"
-      target="_blank"
-      title="访问我们的GitHub项目地址"
-      >联系我们</a
-    >,查看网站的项目文件
-  </p>
-  <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
-  <p id="contactEmail" style="color:rgb(0,0,0)">
-    co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
-  </p>
-</footer>
+
 <script type="text/javascript">
     function formatCheck() {
     var fileInput = document.getElementById("upLoadFile");
@@ -76,10 +83,10 @@
       }
       return true;
   }
-  const inputArea = document.querySelector('.inputarea');
-  const fileNameSpan = document.querySelector('.inputarea span');
+const inputArea = document.querySelector('.inputarea');
+const fileNameSpan = document.querySelector('.inputarea span');
 const fileInput = document.querySelector('.inputarea input[type="file"]');
-
+const previewImage = document.getElementById("previewImage");
 inputArea.addEventListener('click', () => {
   fileInput.click();
 });
@@ -87,7 +94,14 @@ inputArea.addEventListener('click', () => {
 fileInput.addEventListener('change', (event) => {
   const file = event.target.files[0];
   if (file) {
-    fileNameSpan.textContent = file.name;
+    // fileNameSpan.textContent = file.name;
+    const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = "block";
+                };
+                reader.readAsDataURL(file);// 启动读取流程 完成后触发上述函数
+                fileNameSpan.textContent = '';
   } else {
     fileNameSpan.textContent = '点击浏览本地文件';
   }

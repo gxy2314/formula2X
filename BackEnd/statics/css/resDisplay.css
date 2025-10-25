@@ -1,3 +1,14 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
 .returnToMain
 {
     background: #0071e3;
@@ -19,19 +30,24 @@
     border-radius: 25px; 
     text-align: center;
 }
+.lr
+{ 
+  display: block;
+  flex: 1; /* 占据剩余空间 */
+  overflow: auto;
+}
 .containerOfButton
 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-25%, -25%);
-    width: 200px; /* Adjust as needed */
-    height: 50px; /* Adjust as needed */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* flex-direction: column; */
+    margin-top: 3rem;
 }
 footer {
     display: flex;
-    margin-top: 30%;
-    margin-bottom: 0;
+    /* margin-top: 30%; */
+    /* margin-top: auto; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
