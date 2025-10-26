@@ -1,7 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  min-height: 100%;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -32,9 +32,9 @@ body, html {
 }
 .lr
 { 
-  display: block;
+  /* display: block; */
   flex: 1; /* 占据剩余空间 */
-  overflow: auto;
+  /* overflow: auto; */
 }
 .containerOfButton
 {
@@ -44,10 +44,35 @@ body, html {
     /* flex-direction: column; */
     margin-top: 3rem;
 }
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+.tooltip::after {
+  content: "co.sys@outlook.com";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
+.tooltip:hover::after {
+  opacity: 1;
+}
 footer {
     display: flex;
     /* margin-top: 30%; */
     /* margin-top: auto; */
+    /* margin-bottom: auto; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -69,3 +94,4 @@ footer {
   footer a:hover {
     text-decoration: underline;
   }
+

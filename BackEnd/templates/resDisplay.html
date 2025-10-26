@@ -26,7 +26,7 @@
 
 </head>
 <body>
-
+  
     <h1 align="center">formula2x</h1>
   <div class="lr">
     <h1>您的公式识别结果是：</h1>
@@ -51,17 +51,18 @@
       >制作
     </p>
     <p style="color:rgb(0,0,0)">
-      在GitHub上<a
+      在GitHub上
+      <a
         href="https://github.com/gxy2314/formula2X"
         target="_blank"
         title="访问我们的GitHub项目地址"
-        >联系我们</a
-      >,查看网站的项目文件
+        >联系我们</a>,查看网站的项目文件
     </p>
-    <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
+    <!-- <p style="color:rgb(0,0,0)">通过电子邮箱向我们反馈您遇到的问题和建议</p>
     <p id="contactEmail" style="color:rgb(0,0,0)">
-      co.sys@outlook.com&nbsp;&nbsp;&nbsp;&nbsp;2132034379@qq.com
-    </p>
+      co.sys@outlook.com
+    </p> -->
+    <p style="color:rgb(0,0,0)">通过<span class="tooltip" style="color:#000">电子邮件</span>向我们反馈您遇到的问题和建议。</p>
   </footer>
   </body>
 <script type="text/javascript">
@@ -93,9 +94,9 @@
       }
       /* 复制按钮样式 */
       .copy-btn {
-        position: absolute;
-        top: 8px;
-        right: 10px;
+        position: sticky;
+        top: 1px;
+        left: calc(100% - 60px); /* 靠右定位 */
         font-size: 12px;
         padding: 4px 8px;
         color: #fff;
@@ -106,6 +107,7 @@
         z-index: 2;
         transition: background-color 0.2s;
         display: none; /* 默认隐藏 */
+        margin-top: -2.5rem;
       }
       .copy-btn:hover {
         background-color: #005bb5;
