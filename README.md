@@ -6,61 +6,61 @@
 
 ## 项目结构
 
-`test.py`：测试模型的最小程序
-`testforweb.py`：查看Django安装情况的测试脚本
-`backend`：项目主体
-`BackEnd\BackEnd`：核心配置文件
-`BackEnd\BackEnd\urls.py`：根路由配置
-`BackEnd\BackEnd\settings.py`：项目设置（模板路径、语言、时区、内网访问权限等）
-`BackEnd\BackEnd\views.py`：核心业务逻辑函数
-`BackEnd\processSection`文件夹：初始版本核心功能模块
-依赖根路由配置：`path('processSection/', include('processSection.urls'))`
-`BackEnd\templates`：前端代码
+`test.py`：测试模型的最小程序</br>
+`testforweb.py`：查看Django安装情况的测试脚本</br>
+`backend`：项目主体</br>
+`BackEnd\BackEnd`：核心配置文件</br>
+`BackEnd\BackEnd\urls.py`：根路由配置</br>
+`BackEnd\BackEnd\settings.py`：项目设置（模板路径、语言、时区、内网访问权限等）</br>
+`BackEnd\BackEnd\views.py`：核心业务逻辑函数</br>
+`BackEnd\processSection`文件夹：初始版本核心功能模块</br>
+依赖根路由配置：`path('processSection/', include('processSection.urls'))`</br>
+`BackEnd\templates`：前端代码</br>
 
-`BackEnd\static`文件夹：CSS等静态资源
+`BackEnd\static`文件夹：CSS等静态资源</br>
 
-`BackEnd\templates\main.html`：首页及文件上传接口
-`BackEnd\templates\resDisplay.html`：识别结果展示页
-`BackEnd\uploadedFile`文件夹：用户上传图片存储目录
-db.sqlite3：项目自带数据库
+`BackEnd\templates\main.html`：首页及文件上传接口</br>
+`BackEnd\templates\resDisplay.html`：识别结果展示页</br>
+`BackEnd\uploadedFile`文件夹：用户上传图片存储目录</br>
+db.sqlite3：项目自带数据库</br>
 
 ________________________________________
 ## 如何使用
 
-以下操作推荐在项目工作空间(.venv)中进行：
+以下操作推荐在项目工作空间(.venv)中进行：</br>
 
 #### 基础使用
 
 1.	安装依赖
-`pip install -r requirements.txt`
-2.	启动服务
-`cd Backend`
-`python manage.py runserver 0.0.0.0:8000`
-o	本机访问：http://127.0.0.1:8000/
-o	局域网访问：<服务器IP地址>:8000
-3.	注意事项
-o	首次运行时需等待模型权重文件自动下载（命令行显示进度条）
-o	虚拟环境部署需先激活环境再启动服务
-o	关闭服务：在Backend目录下按 Ctrl+C
+`pip install -r requirements.txt`</br>
+2.	启动服务</br>
+`cd Backend`</br>
+`python manage.py runserver 0.0.0.0:8000`</br>
+o	本机访问：http://127.0.0.1:8000/</br>
+o	局域网访问：<服务器IP地址>:8000</br>
+3.	注意事项</br>
+o	首次运行时需等待模型权重文件自动下载（命令行显示进度条）</br>
+o	虚拟环境部署需先激活环境再启动服务</br>
+o	关闭服务：在Backend目录下按 Ctrl+C</br>
 ________________________________________
 ## 模型训练
 ### 环境准备
 
 #### 安装训练依赖
-​      `pip install "pix2tex[train]"`
+​      `pip install "pix2tex[train]"`</br>
 
  #### 数据准备
 
 生成数据集
-`python -m pix2tex.dataset.dataset --equations <数学公式文本路径> --images <训练集图片文件夹路径> --out <输出文件名.pkl>`
-o	预生成数据集：[Google Drive下载](https://drive.google.com/drive/folders/13CA4vAmOmD_I_dSbvLp-Lf0s6KiaNfuO)（含formulae.zip图片和math.txt标签）
-o	验证集/测试集需重复此步骤
+`python -m pix2tex.dataset.dataset --equations <数学公式文本路径> --images <训练集图片文件夹路径> --out <输出文件名.pkl>`</br>
+o	预生成数据集：[Google Drive下载](https://drive.google.com/drive/folders/13CA4vAmOmD_I_dSbvLp-Lf0s6KiaNfuO)（含formulae.zip图片和math.txt标签）</br>
+o	验证集/测试集需重复此步骤</br>
 
 #### 配置训练
 
 ##### 修改配置文件
-o	编辑 pix2tex/model/settings/config.yaml
-o	关键配置项：
+o	编辑 pix2tex/model/settings/config.yaml</br>
+o	关键配置项：</br>
 data: <训练集.pkl路径>      # 如 dataset_train.pkl</br>
 valdata: <验证集.pkl路径>  # 如 dataset_val.pkl</br>
 tokenizer: <分词器路径>    # 默认 tokenizer.json</br>
@@ -75,9 +75,9 @@ num_tokens: <词汇表大小>   # 需与分词器一致</br>
 •	warmup_steps</br>
 •	max_epochs</br>
 自定义分词器（可选）</br>
-`python -m pix2tex.dataset.dataset \</br>
---equations <数学公式文本路径> \</br>
---vocab-size <词汇表大小> \  # 推荐 8000</br>
+`python -m pix2tex.dataset.dataset 
+--equations <数学公式文本路径> 
+--vocab-size <词汇表大小>   # 推荐 8000</br>
 --out <输出分词器.json>       # 如 custom_tokenizer.json`</br>
 完成后需同步更新配置文件中的 tokenizer 路径和 num_tokens 值。</br>
 
