@@ -61,76 +61,76 @@ o	验证集/测试集需重复此步骤
 ##### 修改配置文件
 o	编辑 pix2tex/model/settings/config.yaml
 o	关键配置项：
-data: <训练集.pkl路径>      # 如 dataset_train.pkl
-valdata: <验证集.pkl路径>  # 如 dataset_val.pkl
-tokenizer: <分词器路径>    # 默认 tokenizer.json
-num_tokens: <词汇表大小>   # 需与分词器一致
+data: <训练集.pkl路径>      # 如 dataset_train.pkl</br>
+valdata: <验证集.pkl路径>  # 如 dataset_val.pkl</br>
+tokenizer: <分词器路径>    # 默认 tokenizer.json</br>
+num_tokens: <词汇表大小>   # 需与分词器一致</br>
 
 ##### 启动训练
 
-`python -m pix2tex.train --config <配置文件路径>`
-推荐调整参数：
-•	batch_size
-•	learning_rate
-•	warmup_steps
-•	max_epochs
-自定义分词器（可选）
-`python -m pix2tex.dataset.dataset \
---equations <数学公式文本路径> \
---vocab-size <词汇表大小> \  # 推荐 8000
---out <输出分词器.json>       # 如 custom_tokenizer.json`
-完成后需同步更新配置文件中的 tokenizer 路径和 num_tokens 值。
+`python -m pix2tex.train --config <配置文件路径>`</br>
+推荐调整参数：</br>
+•	batch_size</br>
+•	learning_rate</br>
+•	warmup_steps</br>
+•	max_epochs</br>
+自定义分词器（可选）</br>
+`python -m pix2tex.dataset.dataset \</br>
+--equations <数学公式文本路径> \</br>
+--vocab-size <词汇表大小> \  # 推荐 8000</br>
+--out <输出分词器.json>       # 如 custom_tokenizer.json`</br>
+完成后需同步更新配置文件中的 tokenizer 路径和 num_tokens 值。</br>
 
 ##### 注意事项
 
-1.	定期检查数据加载逻辑
-2.	建议使用GPU环境（显存消耗较大）
-3.	参考官方Colab Notebook进行云端训练
+1.	定期检查数据加载逻辑</br>
+2.	建议使用GPU环境（显存消耗较大）</br>
+3.	参考官方Colab Notebook进行云端训练</br>
 ________________________________________
 ##### 训练结束后模型文件的保存与替换
 
 ###### 模型文件的保存
 
-在模型训练完成后，模型文件将以 .pth 格式保存，文件命名格式如下：
-{name}_e{epoch}_step{step}.pth
-其中：
-{name} 为模型的名称，来自于 config.yaml 配置中的 args.name
-{epoch} 为当前训练的轮次（e+1）
-{step} 为当前训练步骤编号（i）
-模型默认保存在：
-out_path = os.path.join(args.model_path, args.name)
-此外，训练时的 配置文件 也会自动保存：
-config.yaml
-该文件包含所有训练参数，便于后续加载或复现训练过程。
+在模型训练完成后，模型文件将以 .pth 格式保存，文件命名格式如下：</br>
+{name}_e{epoch}_step{step}.pth</br>
+其中：</br>
+{name} 为模型的名称，来自于 config.yaml 配置中的 args.name</br>
+{epoch} 为当前训练的轮次（e+1）</br>
+{step} 为当前训练步骤编号（i）</br>
+模型默认保存在：</br>
+out_path = os.path.join(args.model_path, args.name)</br>
+此外，训练时的 配置文件 也会自动保存：</br>
+config.yaml</br>
+该文件包含所有训练参数，便于后续加载或复现训练过程。</br>
 
 ###### 如何替换预训练模型
 
-训练完成后，您需要 手动替换 formula2X 识别系统中的模型文件：
-找到最新的模型文件
-ls <模型保存目录>
-例如：
-formula2X_e10_step500.pth
-将训练好的模型文件复制到 Web 端目录
-cp <新模型路径> <Web 端模型存储路径>
-例如：
-cp formula2X_e10_step500.pth backend/model.pth
-修改 Web 端代码以加载新模型
-在 settings.py 或 views.py 中修改模型加载路径：
-MODEL_PATH = "backend/model.pth"
-重启 Web 服务
-cd Backend
-python manage.py runserver 0.0.0.0:8000
+训练完成后，您需要 手动替换 formula2X 识别系统中的模型文件：</br>
+找到最新的模型文件</br>
+ls <模型保存目录></br>
+例如：</br>
+formula2X_e10_step500.pth</br>
+将训练好的模型文件复制到 Web 端目录</br>
+cp <新模型路径> <Web 端模型存储路径></br>
+例如：</br>
+cp formula2X_e10_step500.pth backend/model.pth</br>
+修改 Web 端代码以加载新模型</br>
+在 settings.py 或 views.py 中修改模型加载路径：</br>
+MODEL_PATH = "backend/model.pth"</br>
+重启 Web 服务</br>
+cd Backend</br>
+python manage.py runserver 0.0.0.0:8000</br>
 
 ## 版本说明
 
-V 0.0.1 Beta | 2025年1月27日
-完成开源全部流程
+V 0.0.1 Beta | 2025年1月27日</br>
+完成开源全部流程</br>
 
-V 1.0.0 Beta | 2025年10月31日
+V 1.0.0 Beta | 2025年10月31日</br>
 
-重构前端布局逻辑 重新面世
+重构前端布局逻辑 重新面世</br>
 
 ## 版权说明
 
-本项目知识产权系全体开发者共有，未经许可不得用于商业用途。
-Copyright @ 2025 All Rights Reserved.
+本项目知识产权系全体开发者共有，未经许可不得用于商业用途。</br>
+Copyright @ 2025 All Rights Reserved.</br>
